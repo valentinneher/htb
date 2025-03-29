@@ -3,9 +3,9 @@
 
 
 ### Linux File System
-
-| `/`      | The top-level directory is the root filesystem and contains all of the files required to boot the operating system before other filesystems are mounted, as well as the files required to boot the other filesystems. After boot, all of the other filesystems are mounted at standard mount points as subdirectories of the root. |
+| Location       | Explanation |
 | -------- | ------------------------------------------------------------ |
+| `/`      | The top-level directory is the root filesystem and contains all of the files required to boot the operating system before other filesystems are mounted, as well as the files required to boot the other filesystems. After boot, all of the other filesystems are mounted at standard mount points as subdirectories of the root. |
 | `/bin`   | Contains essential command binaries.                         |
 | `/boot`  | Consists of the static bootloader, kernel executable, and files required to boot the Linux OS. |
 | `/dev`   | Contains device files to facilitate access to every hardware device attached to the system. |
