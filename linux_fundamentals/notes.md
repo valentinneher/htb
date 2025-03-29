@@ -192,9 +192,66 @@ netstat -l --protocol=inet | grep -v "localhost" | grep "LISTEN"
 
 
 
+### Permission Management
+
+- **Execute** permissions are needed to traverse a directory.
+- **Write** permissions are needed to modify the content of a directory.
+- Permissions are set for **owner**, **group** and **others** or **all**.
+
+```shell
+cry0l1t3@htb[/htb]$ ls -l /etc/passwd
+
+- rwx rw- r--   1 root root 1641 May  4 23:42 /etc/passwd
+- --- --- ---   |  |    |    |   |__________|
+|  |   |   |    |  |    |    |        |_ Date
+|  |   |   |    |  |    |    |__________ File Size
+|  |   |   |    |  |    |_______________ Group
+|  |   |   |    |  |____________________ User
+|  |   |   |    |_______________________ Number of hard links
+|  |   |   |_ Permission of others (read)
+|  |   |_____ Permissions of the group (read, write)
+|  |_________ Permissions of the owner (read, write, execute)
+|____________ File type (- = File, d = Directory, l = Link, ... )
+```
+
+#### Examples
+
+- `chmod a+r <file>`: adds read permissions to **all** users
+- `chmod o-r <file>`: removes read permissions from **other** users
+- `chmod ug+rw <file>`: gives owner and group read and write permissions
+- `chmod 754 <file>`: sets the permissions to rwx (user), r-w (group), r-- (others).
 
 
 
+#### Octal Value Permission Representation
+
+```shell
+Binary Notation:                4 2 1  |  4 2 1  |  4 2 1
+----------------------------------------------------------
+Binary Representation:          1 1 1  |  1 0 1  |  1 0 0
+----------------------------------------------------------
+Octal Value:                      7    |    5    |    4
+----------------------------------------------------------
+Permission Representation:      r w x  |  r - x  |  r - -
+```
 
 
+
+#### Change Owner
+
+- `chown <user>:<group> <file/directory>`
+
+
+
+#### SUID / GUID
+
+**SUID:** Files which have SUID permission are always executed with the permissions of the user (owner). Owner permissions will have an s instead of an x: `-rwsr-xr-x`
+
+**GUID:** File which have GUID permission are always executed with the permission of the group and will therefore have an s instead of x in the group permissions: `-rwxrws---`
+
+GUID and SUID can be problematic if applied to programs that for example launch a shell. This shell could then potentially have root permissions.
+
+**Sticky Bit**: a **t** instead of x in the "others" permissions dissallows file deletion at the directory level and can look like this: `drwxrwxrwt`.
+
+If the sticky bit is capitalized (`T`), then this means that all other users do not have `execute` (`x`) permissions and, therefore, cannot see the contents of the folder nor run any programs from it. The lowercase sticky bit (`t`) is the sticky bit where the `execute` (`x`) permissions have been set.
 
