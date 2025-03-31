@@ -255,3 +255,17 @@ GUID and SUID can be problematic if applied to programs that for example launch 
 
 If the sticky bit is capitalized (`T`), then this means that all other users do not have `execute` (`x`) permissions and, therefore, cannot see the contents of the folder nor run any programs from it. The lowercase sticky bit (`t`) is the sticky bit where the `execute` (`x`) permissions have been set.
 
+
+
+### User Management
+
+| **Command** | **Description**                                              |
+| ----------- | ------------------------------------------------------------ |
+| `sudo`      | Execute command as a different user.                         |
+| `su`        | The `su` utility requests appropriate user credentials via PAM and switches to that user ID (the default user is the superuser). A shell is then executed. |
+| `useradd`   | Creates a new user or update default new user information.   |
+| `userdel`   | Deletes a user account and related files.                    |
+| `usermod`   | Modifies a user account.                                     |
+| `addgroup`  | Adds a group to the system.                                  |
+| `delgroup`  | Removes a group from the system.                             |
+| `passwd`    | Changes user password.                                       |
